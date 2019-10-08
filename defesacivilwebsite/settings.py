@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'defesacivilwebsite',
-    # 'rest_framework',
+    'rest_framework',
     'relatorios',
     # 'snippets.apps.SnippetsConfig',
     'ws',
