@@ -25,7 +25,7 @@ SECRET_KEY = 'cvm(%a86^=rffvmz@ymtj^1zu542nxpc_)u%9s_ygwo=fe_0df'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.10', '.pythonanywhere.com']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.pythonanywhere.com']
 
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
