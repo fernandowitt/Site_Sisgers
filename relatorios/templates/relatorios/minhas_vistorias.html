@@ -1,0 +1,42 @@
+{% extends 'relatorios/base.html' %}
+
+
+{% block conteudo %}
+<main class="mdl-layout__content mdl-color--grey-100">
+
+    <div class="mdl-grid">
+      <div class="mdl-cell mdl-cell--12-col"><h3>Minhas Vistorias</h3></div>
+    </div>
+    <div class="mdl-grid">
+        {% if empty %}
+            <h5 class="emptymsg">Não há vistorias para serem exibidas. <a href="{% url 'adventure_new' %}">Crie uma nova para vê-la aqui.</a></h5>
+        {% else %}
+            <!-- <span class="mdl-cell--1-col"></span> -->
+            <table class="mdl-data-table mdl-js-data-table mdl-cell--12-col mdl-shadow--2dp" id="dataTable">
+                <thead>
+                    <tr class="md">
+                        <th onclick="sortTable(0, 'autor_arrow', 'cidade_arrow', 'endereco_arrow', 'cobrade_arrow', 'data_arrow')">Autor <i id="autor_arrow" class=" material-icons" role="presentation">unfold_more</i></th>
+                        <th onclick="sortTable(1, 'cidade_arrow', 'autor_arrow', 'endereco_arrow', 'cobrade_arrow', 'data_arrow')">Cidade <i id="cidade_arrow" class=" material-icons" role="presentation">unfold_more</i></th>
+                        <th onclick="sortTable(2, 'endereco_arrow', 'autor_arrow', 'cidade_arrow', 'cobrade_arrow', 'data_arrow')">Endereço <i id="endereco_arrow" class=" material-icons" role="presentation">unfold_more</i></th>
+                        <th onclick="sortTable(3, 'cobrade_arrow', 'autor_arrow', 'cidade_arrow', 'endereco_arrow', 'data_arrow')">Tipo de Ocorrência <i id="cobrade_arrow" class=" material-icons" role="presentation">unfold_more</i></th>
+                        <th onclick="sortTable(4, 'data_arrow', 'autor_arrow', 'cidade_arrow', 'cobrade_arrow', 'endereco_arrow')">Data <i id="data_arrow" class=" material-icons" role="presentation">unfold_more</i></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for vistoria in vistorias %}
+                        <tr onclick="window.location='{% url 'vistoriadetalhes' pk=vistoria.pk %}';">
+                            <td class="mdl-color-text--deep-orange">{{ vistoria.autor.first_name }} {{ vistoria.autor.last_name }}</td>
+                            <td class="mdl-color-text--deep-orange">{{ vistoria.municipio }}</td>
+                            <td class="mdl-color-text--deep-orange">{{ vistoria.endereco }}</td>
+                            <td class="mdl-color-text--deep-orange">{{ vistoria.cobrad }}</td>
+                            <td class="mdl-color-text--deep-orange">{{ vistoria.data }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <!-- <span class="mdl-cell--1-col"></span> -->
+        {% endif %}
+    </div>
+</main>
+
+{% endblock %}
