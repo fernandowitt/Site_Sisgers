@@ -3,6 +3,217 @@
 
 {% block conteudo %}
 <main class="mdl-layout__content mdl-color--grey-100">
-{{ vistoria.autor }} {{ vistoria.data }}
+	<div class="mdl-grid">
+
+		<div class="mdl-cell mdl-cell--12-col"><h3>Vistoria de {{ vistoria.autor.username }} - {{ vistoria.data }}</h3></div>
+
+		<ul class="demo-list-item mdl-list">
+			<li class="mdl-list__item">
+				<span class="mdl-list__item-primary-content">
+					Autor: {{ vistoria.autor.username }}
+				</span>
+			</li>
+			<li class="mdl-list__item">
+				<span class="mdl-list__item-primary-content">
+					Data: {{ vistoria.data }}
+				</span>
+			</li>
+			<li class="mdl-list__item">
+				<span class="mdl-list__item-primary-content">
+					Município: {{ vistoria.municipio }}
+				</span>
+			</li>
+			<li class="mdl-list__item">
+				<span class="mdl-list__item-primary-content">
+					Endereço: {{ vistoria.endereco }}
+				</span>
+			</li>
+			<li class="mdl-list__item">
+				<span class="mdl-list__item-primary-content">
+					COBRADE: {{ vistoria.cobrad }}
+				</span>
+			</li>
+			<li class="mdl-list__item">
+				<span class="mdl-list__item-primary-content">
+					Descrição: {{ vistoria.descricao }}
+				</span>
+			</li>
+		</ul>
+
+		<div class="mdl-cell mdl-cell--12-col"><h3>Danos Humanos</h3></div>
+
+		<table class="mdl-data-table mdl-js-data-table mdl-cell--12-col mdl-shadow--2dp">
+			<tr>
+				<th>Desalojados:</th>
+				<td>{{ vistoria.danos_humanos_desalojados }}</td>
+				<th>Desabrigados:</th>
+				<td>{{ vistoria.danos_humanos_desabrigados }}</td>
+				<th>Desaparecidos:</th>
+				<td>{{ vistoria.danos_humanos_desaparecidos }}</td>
+			</tr>
+			<tr>
+				<th>Feridos:</th>
+				<td>{{ vistoria.danos_humanos_feridos }}</td>
+				<th>Enfermos:</th>
+				<td>{{ vistoria.danos_humanos_enfermos }}</td>
+				<th>Mortos:</th>
+				<td>{{ vistoria.danos_humanos_mortos }}</td>
+			</tr>
+			<tr>
+				<th>Isolados:</th>
+				<td>{{ vistoria.danos_humanos_isolados }}</td>
+				<th>Atingidos:</th>
+				<td>{{ vistoria.danos_humanos_atingidos }}</td>
+				<th>Afetados:</th>
+				<td>{{ vistoria.danos_humanos_afetados }}</td>
+			</tr>
+		</table>
+		<ul class="demo-list-item mdl-list">
+			<li class="mdl-list__item">
+				<span class="mdl-list__item-primary-content">
+					Observações: {{ vistoria.danos_humanos_observacoes }}
+				</span>
+			</li>
+		</ul>
+
+		<div class="mdl-cell mdl-cell--12-col"><h3>Danos Materiais</h3></div>
+
+		<table class="mdl-data-table mdl-js-data-table mdl-cell--12-col mdl-shadow--2dp">
+			<tr>
+				<th>Unidades habitacionais atingidas:</th>
+				<td>{{ vistoria.unidades_habitacionais_atingidas }}</td>
+				<th>Unidades habitacionais danificadas:</th>
+				<td>{{ vistoria.unidades_habitacionais_danificads }}</td>
+				<th>Unidades habitacionais interditadas:</th>
+				<td>{{ vistoria.unidades_habitacionais_interditadas }}</td>
+			</tr>
+			<tr>
+				<th>Unidades habitacionais destruídas:</th>
+				<td>{{ vistoria.unidades_habitacionais_destruidas }}</td>
+				<th>Instalações públicas de saúde atingidas:</th>
+				<td>{{ vistoria.instalacoes_publicas_saude_atingidas }}</td>
+				<th>Instalações públicas de ensino atingidas:</th>
+				<td>{{ vistoria.instalacoes_publicas_ensino_atingidas }}</td>
+			</tr>
+			<tr>
+				<th>Instalações comunitárias atingidas:</th>
+				<td>{{ vistoria.instalacoes_comunitarias_atingidas }}</td>
+				<th>Obras atingidas:</th>
+				<td>{{ vistoria.obras_atingidas }}</td>
+				<th>Interrupções de serviços essenciais:</th>
+				<td>{{ vistoria.interrupcoes_servicos_essenciais }}</td>
+			</tr>
+		</table>
+		<ul class="demo-list-item mdl-list">
+			<li class="mdl-list__item">
+				<span class="mdl-list__item-primary-content">
+					Observações: {{ vistoria.danos_materiais_observacoes }}
+				</span>
+			</li>
+		</ul>
+
+		<div class="mdl-cell mdl-cell--12-col"><h3>Danos Ambientais</h3></div>
+
+		<table class="mdl-data-table mdl-js-data-table mdl-cell--12-col mdl-shadow--2dp">
+			<tr>
+				<th>Contaminação do solo:</th>
+				<td>{{ vistoria.contaminacao_solo }}</td>
+				<th>Contaminação da água:</th>
+				<td>{{ vistoria.contaminacao_agua }}</td>
+				<th>Contaminação do ar:</th>
+				<td>{{ vistoria.contaminacao_ar }}</td>
+			</tr>
+		</table>
+		<ul class="demo-list-item mdl-list">
+			<li class="mdl-list__item">
+				<span class="mdl-list__item-primary-content">
+					Observações: {{ vistoria.danos_ambientais_observacoes }}
+				</span>
+			</li>
+		</ul>
+
+		<div class="mdl-cell mdl-cell--12-col"><h3>Danos Econômicos</h3></div>
+
+		<table class="mdl-data-table mdl-js-data-table mdl-cell--12-col mdl-shadow--2dp">
+			<tr>
+				<th>Danos na agricultura:</th>
+				<td>{{ vistoria.danos_agricultura }}</td>
+				<th>Danos na pecuária:</th>
+				<td>{{ vistoria.danos_pecuaria }}</td>
+				<th>Danos na indústria:</th>
+				<td>{{ vistoria.danos_industria }}</td>
+			</tr>
+			<tr>
+				<th>Danos no comércio:</th>
+				<td>{{ vistoria.danos_comercio }}</td>
+				<th>Danos na prestação de serviços:</th>
+				<td>{{ vistoria.danos_prestacao_de_servicos }}</td>
+				<th></th><td></td>
+			</tr>
+		</table>
+		<ul class="demo-list-item mdl-list">
+			<li class="mdl-list__item">
+				<span class="mdl-list__item-primary-content">
+					Observações: {{ vistoria.danos_economicos_observacoes }}
+				</span>
+			</li>
+		</ul>
+
+		<div class="mdl-cell mdl-cell--12-col"><h3>IAH Fornecidos</h3></div>
+
+		<table class="mdl-data-table mdl-js-data-table mdl-cell--12-col mdl-shadow--2dp">
+			<tr>
+				<th>Cestas de alimentos:</th>
+				<td>{{ vistoria.iah_cestas_de_alimentos }}</td>
+				<th>Água potável:</th>
+				<td>{{ vistoria.iah_agua_potavel }}</td>
+				<th>Colchões:</th>
+				<td>{{ vistoria.iah_colchoes }}</td>
+			</tr>
+			<tr>
+				<th>Kit de higiene pessoal:</th>
+				<td>{{ vistoria.iah_kit_higiene_pessoal }}</td>
+				<th>Kit de limpeza:</th>
+				<td>{{ vistoria.iah_kit_limpeza }}</td>
+				<th>Telhas:</th>
+				<td>{{ vistoria.iah_telhas }}</td>
+			</tr>
+			<tr>
+				<th>Lona plástica:</th>
+				<td>{{ vistoria.iah_lona_plastica }}</td>
+				<th>Outros:</th>
+				<td>{{ vistoria.iah_outros }}</td>
+				<th></th><td></td>
+			</tr>
+		</table>
+		<ul class="demo-list-item mdl-list">
+			<li class="mdl-list__item">
+				<span class="mdl-list__item-primary-content">
+					Observações: {{ vistoria.iah_fornecidos_outros_observacoes }}
+				</span>
+			</li>
+			<li class="mdl-list__item">
+				<span class="mdl-list__item-primary-content">
+					Vias públicas totalmente desobistruídas: 
+					{% if vistoria.iah_vias_publicas_totalmente_desobistruidas %}
+						sim
+					{% else %}
+						não
+					{% endif %}
+				</span>
+			</li>
+			<li class="mdl-list__item">
+				<span class="mdl-list__item-primary-content">
+					Reestabelecimento de serviços essenciais: 
+					{% if vistoria.iah_reestabelecimento_servicos_essenciais %}
+						sim
+					{% else %}
+						não
+					{% endif %}
+				</span>
+			</li>
+		</ul>
+
+	</div>
 </main>
 {% endblock %}
