@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block conteudo %}
+<main class="mdl-layout__content mdl-color--grey-100">
+	<div style="margin-left: 2% !important; margin-top: 2% !important; display: block !important;">
+		<h1>Login</h1><br>
+  <form method="post">
+    {% csrf_token %}
+    <!-- {{ form|crispy }} -->
+    <h5>Usuário<span style="color: red">*</span></h5>
+    	{{ form.username }}
+    	<br><br>
+    <h5>Senha<span style="color: red">*</span></h5>
+    	{{ form.password }}
+    	<br><br>
+
+    <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" style="margin-left: 4% !important; margin-top: 15px;">Login</button>
+  </form>
+	</div>
+</main>
+{% endblock %}

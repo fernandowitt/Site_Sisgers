@@ -5,7 +5,6 @@ from django.contrib.auth.models import User
 
 
 class VistoriaSerializer(serializers.Serializer):
-
     id = serializers.IntegerField(required = True)
 
     #tem como fazer com choice

@@ -212,8 +212,36 @@
 					{% endif %}
 				</span>
 			</li>
+			<li class="mdl-list__item">
+				<span class="mdl-list__item-primary-content">
+					Status do documento: 
+					{% if vistoria.deferido %}
+						deferido
+					{% else %}
+						indeferido
+					{% endif %}
+				</span>
+			</li>
 		</ul>
 
+		
+
 	</div>
+
+	{% if user.is_superuser %}
+		{% if vistoria.deferido %}
+			<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored mdl-color--red-400" style="margin-left: 15px !important; margin-bottom: 30px !important;">
+				Indeferir <i class=" material-icons" role="presentation">close</i>
+			</button>
+		{% else %}
+			<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored mdl-color--green-400" style="margin-left: 15px !important; margin-bottom: 30px !important;">
+				Deferir <i class=" material-icons" role="presentation">check</i>
+			</button>
+		{% endif %}
+	{% endif %}
+	<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" style="margin-left: 15px !important; margin-bottom: 30px !important;">
+		Gerar PDF <i class=" material-icons" role="presentation">description</i>
+	</button>
+	
 </main>
 {% endblock %}

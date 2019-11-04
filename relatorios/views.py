@@ -10,7 +10,8 @@ from django.core.mail import send_mail, BadHeaderError
 
 from .models import Vistoria
 
-def telainicial(request):
+@login_required
+def todasvistorias(request):
 	vistorias = Vistoria.objects.filter(data__lte=timezone.now()).order_by('-data')
 	return render(request, 'relatorios/vistorias.html', {'vistorias':vistorias})
 
@@ -19,6 +20,7 @@ def minhasvistorias(request):
 	vistorias = Vistoria.objects.filter(autor=request.user, data__lte=timezone.now()).order_by('-data')
 	return render(request, 'relatorios/minhas_vistorias.html', {'vistorias':vistorias})
 
+@login_required
 def vistoriadetalhes(request, pk):
 	vistoria = get_object_or_404(Vistoria, pk=pk)
 	if request.user == vistoria.autor:
