@@ -8,13 +8,13 @@ class Vistoria(models.Model):
 
     #tem como fazer com choice
     cobrad = models.CharField(max_length=200)
-    municipio = models.CharField(max_length=200)
+    municipios = models.TextField()
     #tem como fazer com choice
 
     descricao = models.TextField()
     data = models.DateTimeField(default=timezone.now)
     endereco = models.TextField()
-
+    dataDesastre = models.TextField()
     #latitude e longitude com FloatField ou DecimalField?
     #Danos humanos:
 
@@ -28,7 +28,7 @@ class Vistoria(models.Model):
     danos_humanos_atingidos = models.IntegerField(default=0, blank=True)
     danos_humanos_afetados = models.IntegerField(default=0, blank=True)
 
-    danos_humanos_observacoes = models.TextField(default="", blank=True)
+    danos_humanos_observacoes = models.TextField(default="Sem Observações", blank=True)
 
     #Danos materiais:
 
@@ -42,7 +42,7 @@ class Vistoria(models.Model):
     obras_atingidas = models.IntegerField(default=0, blank=True)
     interrupcoes_servicos_essenciais = models.IntegerField(default=0, blank=True)
 
-    danos_materiais_observacoes = models.TextField(default="", blank=True)
+    danos_materiais_observacoes = models.TextField(default="Sem Observações", blank=True)
 
     #Danos ambientais:
 
@@ -50,7 +50,7 @@ class Vistoria(models.Model):
     contaminacao_agua = models.IntegerField(default=0, blank=True)
     contaminacao_ar = models.IntegerField(default=0, blank=True)
 
-    danos_ambientais_observacoes = models.TextField(default="", blank=True)
+    danos_ambientais_observacoes = models.TextField(default="Sem Observações", blank=True)
 
     #Danos econômicos:
 
@@ -60,7 +60,7 @@ class Vistoria(models.Model):
     danos_comercio = models.IntegerField(default=0, blank=True)
     danos_prestacao_de_servicos = models.IntegerField(default=0, blank=True)
 
-    danos_economicos_observacoes = models.TextField(default="", blank=True)
+    danos_economicos_observacoes = models.TextField(default="Sem Observações", blank=True)
 
     #IAH
 
@@ -73,13 +73,16 @@ class Vistoria(models.Model):
     iah_lona_plastica = models.IntegerField(default=0, blank=True)
     iah_outros = models.IntegerField(default=0, blank=True)
 
-    iah_fornecidos_outros_observacoes = models.TextField(default="", blank=True)
+    iah_fornecidos_outros_observacoes = models.TextField(default="Sem Observações", blank=True)
     iah_vias_publicas_totalmente_desobistruidas = models.BooleanField(default=False)
     iah_reestabelecimento_servicos_essenciais = models.BooleanField(default=False)
 
     #Status
 
     deferido = models.BooleanField(default=False, blank=True)
+
+    latitude = models.CharField(max_length=20)
+    longitude = models.CharField(max_length=20)
 
     def publish(self):
         self.save()

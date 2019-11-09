@@ -46,10 +46,14 @@ def cadastrovistoria(request):
 		return JsonResponse(jason, safe=False)
 
 	if request.method == 'POST':
-		data = JSONParser().parse(request)	
+		data = json.loads(request.body.decode('UTF-8'))
+		user = User.objects.get(id = data.get('autor'))
 		serializer = VistoriaSerializer(data=data)
 		if serializer.is_valid():
 			print(serializer)
 			serializer.save()
-			return JsonResponse(serializer.data)
+			data = {
+				"status": 200
+			}
+			return JsonResponse(data)
 		return JsonResponse(serializer.errors, status=400)
