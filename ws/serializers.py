@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 
 
-class VistoriaSerializer(serializers.Serializer):
+class VistoriaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Vistoria
         fields = '__all__'
