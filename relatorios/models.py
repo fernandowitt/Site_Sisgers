@@ -4,7 +4,7 @@ from django.utils import timezone
 
 
 class Vistoria(models.Model):
-    autor = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    autor = models.ForeignKey(settings.AUTH_USER_MODEL, related_name = 'autor_id',  on_delete=models.CASCADE)
 
     #tem como fazer com choice
     cobrad = models.CharField(max_length=200)

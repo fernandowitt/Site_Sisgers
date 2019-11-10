@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.pythonanywhere.com']
 
-# AUTH_USER_MODEL = 'accounts.User'
+
 
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
@@ -52,7 +52,7 @@ INSTALLED_APPS = [
     'relatorios',
     # 'snippets.apps.SnippetsConfig',
     'ws',
-    # 'accounts',
+    #'accounts',
     'accounts.apps.AccountsConfig',
     'crispy_forms',
 ]
@@ -134,6 +134,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
+AUTH_USER_MODEL = "accounts.CustomUser"
 
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
