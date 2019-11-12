@@ -21,29 +21,69 @@ def relatorio(request):
 	from reportlab.lib.units import cm
 	from reportlab.lib.pagesizes import A4
 	from textwrap import wrap
+	from reportlab.pdfbase import pdfmetrics
+	from reportlab.pdfbase.ttfonts import TTFont
+
 	response = HttpResponse(content_type='application/pdf')
 	response['Content-Disposition'] = 'attachment; filename=relatorio.pdf'
 	p = canvas.Canvas(response, pagesize = A4)
-	p.drawCentredString(11*cm, 24*cm, "ESTADO DE SANTA CATARINA")
-	p.drawCentredString(11*cm, 23.5*cm, "SECRETARIA DE ESTADO DA DEFESA CIVIL")
-	p.drawCentredString(11*cm, 23*cm, "COORDENADORIA REGIONAL DE DEFESA CIVIL")
-	p.drawCentredString(11*cm, 20*cm, "RELATÓRIO CIRCUNSTANCIADO Nº           ")
-	p.line(6.7*cm, 19.95*cm, 15.5*cm, 19.95*cm)
-	p.drawString(4*cm, 18*cm, "Identificação")
+	pdfmetrics.registerFont(TTFont('Arial', 'Arial.ttf'))
+	p.setFont("Arial", 8)
+	p.drawString(6.8*cm, 28.5*cm, "ESTADO DE SANTA CATARINA")
+	p.drawString(6.8*cm, 28*cm, "SECRETARIA DE ESTADO DA DEFESA CIVIL")
+	p.drawString(6.8*cm, 27.5*cm, "COORDENADORIA REGIONAL DE DEFESA CIVIL")
+	p.drawCentredString(11*cm, 25.5*cm, "RELATÓRIO CIRCUNSTANCIADO Nº           ")
+	p.line(6.7*cm, 25*cm, 15.5*cm, 25*cm)
+	p.drawString(4*cm, 24*cm, "Identificação")
 	uf = "a"
 	municipio = "b"
 	coderec = "c"
-	p.drawString(4*cm, 17.5*cm, "UF: %s Municipio: %s CODEREC: %s" % (uf,municipio,coderec))
-	p.drawString(4*cm, 17*cm, "Tipologia do Desastre")
+	p.drawString(4*cm, 23.5*cm, "UF: %s Municipio: %s CODEREC: %s" % (uf,municipio,coderec))
+	p.drawString(4*cm, 23*cm, "Tipologia do Desastre")
 	cobrade = "a"
 	descricao = "b"
 	data = "c"
 	hora = "c"
-	p.drawString(4*cm, 16.5*cm, "COBRADE: %s Descricao: %s Data: %s Hora: %s" % (cobrade,descricao,data, hora))
+	p.drawString(4*cm, 22.5*cm, "COBRADE: %s Descricao: %s Data: %s Hora: %s" % (cobrade,descricao,data, hora))
 	descricao = "ajsndjasjdnasjdashjhfsdhbfhjasdhjfsdbfsdhjfbhjasdbhjfbhsdbfhjsdbhjfbhasdbfhbsdhbfhjasdhjfsdfhjbasdfhjsdbhjfbhjsdbfhbsdhfbhsdbfhjsdbfhsdfbsdhjfbsdhjfbsdhjfbsdhbcsbvhbbbbbbbbbbbbbb"
-	p.drawString(4*cm, 16*cm, "Descricao: ")
+	p.drawString(4*cm, 22*cm, "Descricao: ")
 	wraped_text = '<br/>'.join(wrap(descricao, 20)) 
-	p.drawString(6*cm, 16*cm, wraped_text)
+	p.drawString(6*cm, 22*cm, wraped_text)
+	p.drawString(4*cm, 21.5*cm, "Avaliacao de Danos e Prejuizos")
+	p.drawString(4*cm, 21*cm, "DANOS HUMANOS                                                                                                        SIM  NAO  QUANTIDADE")
+	p.drawString(4*cm, 20.5*cm, "Desalojados")
+	p.drawString(4*cm, 20*cm, "Desabrigados")
+	p.drawString(4*cm, 19.5*cm, "Desaparecidos")
+	p.drawString(4*cm, 19*cm, "Feridos")
+	p.drawString(4*cm, 18.5*cm, "Enfermos")
+	p.drawString(4*cm, 18*cm, "Mortos")
+	p.drawString(4*cm, 17.5*cm, "Isolados")
+	p.drawString(4*cm, 17*cm, "Atingidos")
+	p.drawString(4*cm, 16.5*cm, "Afetados")
+	p.drawString(4*cm, 15*cm, "Observacoes")
+	p.line(4*cm, 14.5*cm, 18*cm, 14.5*cm)
+	p.line(4*cm, 14*cm, 18*cm, 14*cm)
+	p.line(4*cm, 13.5*cm, 18*cm, 13.5*cm)
+
+	p.drawString(4*cm, 13*cm, "DANOS MATERIAIS                                                                                                        SIM  NAO  QUANTIDADE")
+	p.drawString(4*cm, 12.5*cm, "Unidades Habitacionais Atingidas")
+	p.drawString(4*cm, 12*cm, "Unidades Habitacionais Danificadas")
+	p.drawString(4*cm, 11.5*cm, "Unidades Habitacionais Interditadas")
+	p.drawString(4*cm, 11*cm, "Unidades Habitacionais Destruidas")
+	p.drawString(4*cm, 10.5*cm, "Instalacoes Publicas de Saude Atingidas/Danificadas/Destruidas")
+	p.drawString(4*cm, 10*cm, "Instalacoes Publicas de Ensino Atingidas/Danificadas/Destruidas")
+	p.drawString(4*cm, 9.5*cm, "Instalacoes Publicas de uso Comunitario Atingidas/Danificadas/Destruidas")
+	p.drawString(4*cm, 9*cm, "Obras de Infraestrutura Publica Danificada/Destruida")
+	p.drawString(4*cm, 8.5*cm, "Interrupcao de Servicos Essenciais")
+	p.drawString(4*cm, 7*cm, "Observacoes")
+	p.line(4*cm, 6.5*cm, 18*cm, 6.5*cm)
+	p.line(4*cm, 6*cm, 18*cm, 6*cm)
+	p.line(4*cm, 5.5*cm, 18*cm, 5.5*cm)
+
+	p.line(4*cm, 4.5*cm, 18*cm, 4.5*cm)
+	p.drawCentredString(11*cm, 4*cm, "SECRETARIA DE ESTADO DA DEFESA CIVIL")
+	p.drawCentredString(11*cm, 3.5*cm, "Rua Ivo Silveira, 2320 - Capoeiras | CEP 88.085-001 | Florianopolis - SC")
+	p.drawCentredString(11*cm, 3*cm, "www.defesacivil.sc.gov.br")
 	p.showPage()
 	p.save()
 	return response
