@@ -27,8 +27,8 @@ def relatorio(request):
 	response = HttpResponse(content_type='application/pdf')
 	response['Content-Disposition'] = 'attachment; filename=relatorio.pdf'
 	p = canvas.Canvas(response, pagesize = A4)
-	pdfmetrics.registerFont(TTFont('Arial', 'Arial.ttf'))
-	p.setFont("Arial", 8)
+	#pdfmetrics.registerFont(TTFont('Arial', 'Arial.ttf'))
+	#p.setFont("Arial", 8)
 	p.drawString(6.8*cm, 28.5*cm, "ESTADO DE SANTA CATARINA")
 	p.drawString(6.8*cm, 28*cm, "SECRETARIA DE ESTADO DA DEFESA CIVIL")
 	p.drawString(6.8*cm, 27.5*cm, "COORDENADORIA REGIONAL DE DEFESA CIVIL")
@@ -47,7 +47,7 @@ def relatorio(request):
 	p.drawString(4*cm, 22.5*cm, "COBRADE: %s Descricao: %s Data: %s Hora: %s" % (cobrade,descricao,data, hora))
 	descricao = "ajsndjasjdnasjdashjhfsdhbfhjasdhjfsdbfsdhjfbhjasdbhjfbhsdbfhjsdbhjfbhasdbfhbsdhbfhjasdhjfsdfhjbasdfhjsdbhjfbhjsdbfhbsdhfbhsdbfhjsdbfhsdfbsdhjfbsdhjfbsdhjfbsdhbcsbvhbbbbbbbbbbbbbb"
 	p.drawString(4*cm, 22*cm, "Descricao: ")
-	wraped_text = '<br/>'.join(wrap(descricao, 20)) 
+	wraped_text = '\n'.join(wrap(descricao, 20)) 
 	p.drawString(6*cm, 22*cm, wraped_text)
 	p.drawString(4*cm, 21.5*cm, "Avaliacao de Danos e Prejuizos")
 	p.drawString(4*cm, 21*cm, "DANOS HUMANOS                                                                                                        SIM  NAO  QUANTIDADE")
