@@ -15,9 +15,11 @@
     <h5>Senha<span style="color: red">*</span></h5>
     	{{ form.password }}
     	<br><br>
-
+    <a href="{% url 'signup' %}">Cadastrar-se</a>
+    <br />
     <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" style="margin-left: 4% !important; margin-top: 15px;">Login</button>
   </form>
+
 	</div>
 </main>
 {% endblock %}

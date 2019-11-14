@@ -6,16 +6,21 @@
 <main class="mdl-layout__content mdl-color--grey-100">
 	<div style="margin-left: 2% !important; margin-top: 2% !important; display: block !important;">
   <h2>Sign up</h2>
-  <form method="post">
+  <form method="POST">
     {% csrf_token %}
-    {{ form|crispy }}
 
-    <!-- <h5>Usuário<span style="color: red">*</span></h5>
+    <!-- {{form.as_p}} -->
+   
+
+    <h5>Usuário<span style="color: red">*</span></h5>
     	{{ form.username }}
     	<br><br>
     <h5>Senha<span style="color: red">*</span></h5>
-    	{{ form.password }}
+    	{{ form.password1 }}
     	<br><br>
+    <h5>Confirme sua senha<span style="color: red">*</span></h5>
+        {{ form.password2 }}
+        <br><br>
     <h5>Nome<span style="color: red">*</span></h5>
     	{{ form.first_name }}
     	<br><br>
@@ -24,7 +29,7 @@
     	<br><br>
     <h5>E-mail<span style="color: red">*</span></h5>
     	{{ form.email }}
-    	<br><br> -->
+    	<br><br>
 
     <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" style="margin-left: 6% !important; margin-top: 15px;">Cadastrar</button>
   </form>

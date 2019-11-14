@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block conteudo %}
+
+ <div style="margin-left: 2% !important; margin-top: 2% !important; display: block !important;">
+  <h5>Realize o login ou registre-se para continuar</h5>
+  <a href="{% url 'login' %}">login</a>
+  <br />
+  <a href="{% url 'signup' %}">Cadastrar-se</a>
+  </div>
+
+
+{% endblock %}
