@@ -299,6 +299,7 @@ def vistoria_pdf(request, pk):
 	if(vistoria.iah_reestabelecimento_servicos_essenciais):
 		vistoriaSimples.iah_reestabelecimento_servicos_essenciais = True
 
+	print(vistoriaSimples.iah_vias_publicas_totalmente_desobistruidas)
 	vistoriaSimples.deferido = vistoria.deferido
 
 	return render(request, 'relatorios/relatorio.html', {'vistoria': vistoriaSimples})

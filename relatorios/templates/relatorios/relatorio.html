@@ -473,7 +473,7 @@ $(document).ready( function() {
 				</tr>
 				<tr>
 					<td class="table_unbordered full2">Fornecimento de Itens de Ajuda Humanitária pelo poder público municipal</td>
-					{% if vistoria.vistoriaSimples.iah_bool %}
+					{% if vistoria.iah_bool %}
 					<td class="table_unbordered ">&#9745;</td>
 					<td class="table_unbordered "></td>
 					{% else %}
@@ -578,8 +578,8 @@ $(document).ready( function() {
 				<tr>
 					<td class="table_unbordered full2">Vias públicas totalmente desobstruídas</td>
 					{% if vistoria.iah_vias_publicas_totalmente_desobistruidas %}
-					<td class="table_unbordered ">&#9744;</td>
 					<td class="table_unbordered ">&#9745;</td>
+					<td class="table_unbordered ">&#9744;</td>
 					{% else %}
 					<td class="table_unbordered ">&#9744;</td>
 					<td class="table_unbordered ">&#9745;</td>
@@ -588,8 +588,8 @@ $(document).ready( function() {
 				<tr>
 					<td class="table_unbordered full2">Restabelecimento de Serviços Essenciais</td>
 					{% if vistoria.iah_reestabelecimento_servicos_essenciais %}
-					<td class="table_unbordered ">&#9744;</td>
 					<td class="table_unbordered ">&#9745;</td>
+					<td class="table_unbordered ">&#9744;</td>
 					{% else %}
 					<td class="table_unbordered ">&#9744;</td>
 					<td class="table_unbordered ">&#9745;</td>
