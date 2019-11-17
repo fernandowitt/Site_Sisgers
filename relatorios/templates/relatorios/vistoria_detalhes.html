@@ -240,9 +240,10 @@
 			</button>
 		{% endif %}
 	{% endif %}
-	<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" style="margin-left: 15px !important; margin-bottom: 30px !important;">
+	<a href = "{% url 'vistoria_pdf' pk=vistoria.pk %}"><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" style="margin-left: 15px !important; margin-bottom: 30px !important;">
 		Gerar PDF <i class=" material-icons" role="presentation">description</i>
 	</button>
+	</a>
 	
 </main>
 {% endblock %}

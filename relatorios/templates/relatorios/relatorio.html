@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 
 <html lang="pt-br">
-	<head ></head>
+	<head >
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
+	<script src="https://code.jquery.com/jquery-1.9.1.js"></script>
+	</head>
 	<style type="text/css">
 		table, th, td { border: 1px solid black; padding: 2px 4px 2px 4px; }
-		body { font-size: 14px; font-family: Arial; margin: 10px; }
+		body { font-size: 12px; font-family: Arial; margin: 10px; line-height : 12px}
 		table.tablefull { border-collapse: collapse; table-layout: fixed; width: 100%; white-space: pre-wrap !important; }
 		.table_unbordered { border: none !important; padding: 2px 4px 2px 4px; text-align: center; }
-		.full { width: 80%; text-align: left; }
+		.full { width: 90%; text-align: left; }
 		.full2 { width: 90%; text-align: left; }
 		.left { text-align: left; }
 		/*. { width: 5%; }*/
@@ -16,8 +19,34 @@
 		th.quatro, td.quatro { width: 25%; }*/
 	</style>
 
+	<script type="text/javascript">
+		
+
+$(document).ready( function() {
+
+	var doc = new jsPDF();
+		var specialElementHandlers = {
+    		'#pdf': function (element, renderer) {
+        return true;
+    		}
+		};
+
+		$('#btGerarPDF').click(function () {
+    			console.log('aa')
+    		doc.fromHTML($('#pdf').html(), 15, 15, {
+       		 'width': 170,
+            'elementHandlers': specialElementHandlers
+   			});
+    doc.save('RELATÓRIO.pdf');
+	});
+		 });
+
+
+	</script>
+
 	<body>
-		<div style="margin: auto; width: 50%; padding: 10px; line-height: 50%;">
+		<div id = "pdf">
+		<div style="margin: auto; width: 50%; padding-top: 10px; line-height: 50%;">
 			<b>
 				<p style="text-align: left;">ESTADO DE SANTA CATARINA</p>
 				<p style="text-align: left;">SECRETARIA DE ESTADO DA DEFESA CIVIL</p>
@@ -37,8 +66,8 @@
 				</tr>
 				<tr>
 					<td>SC</td>
-					<td>{{ vistoria.municipio }}</td>
-					<td>{{ vistoria.autor.full_name }}</td>
+					<td>{{ vistoria.municipios }}</td>
+					<td>{{ vistoria.autor.first_name }} {{ vistoria.autor.last_name }}</td>
 				</tr>
 			</table>
 		</div><div>
@@ -52,15 +81,15 @@
 				</tr>
 				<tr>
 					<td>{{ vistoria.cobrad }}</td>
-					<td>TESTE</td>
-					<td>TESTE</td>
-					<td>TESTE</td>
+					<td>{{ vistoria.descricao }}</td>
+					<td>{{ vistoria.data }}</td>
+					<td>{{ vistoria.hora }}</td>
 				</tr>
 			</table>
 		</div><div>
 			<p><b>Descrição do Desastre</b></p>
 			<table class="tablefull">
-				<td class="um">AAA</td>
+				<td class="um">{{ vistoria.descricao }}</td>
 			</table>
 		</div>
 		<div>
@@ -74,63 +103,118 @@
 				</tr>
 				<tr>
 					<td class="table_unbordered full">Desalojados</td>
+					{% if vistoria.danos_humanos_desalojados_bool %}
+					<td class="table_unbordered ">&#9745;</td>
 					<td class="table_unbordered "></td>
+					<td class="table_unbordered "><u>{{vistoria.danos_humanos_desalojados}}</u></td>
+					{% else %}
 					<td class="table_unbordered "></td>
-					<td class="table_unbordered "><u>aaaaaaaaaaa</u></td>
+					<td class="table_unbordered ">&#9745;</td>
+					<td class="table_unbordered "><u>0</u></td>
+					{% endif %}
+					
 				</tr>
 				<tr>
 					<td class="table_unbordered full">Desabrigados</td>
+					{% if vistoria.danos_humanos_desabrigados_bool %}
+					<td class="table_unbordered ">&#9745;</td>
 					<td class="table_unbordered "></td>
+					<td class="table_unbordered "><u>{{vistoria.danos_humanos_desabrigados}}</u></td>
+					{% else %}
 					<td class="table_unbordered "></td>
-					<td class="table_unbordered "><u></u></td>
+					<td class="table_unbordered ">&#9745;</td>
+					<td class="table_unbordered "><u>0</u></td>
+					{% endif %}
 				</tr>
 				<tr>
 					<td class="table_unbordered full">Desaparecidos</td>
+					{% if vistoria.danos_humanos_desaparecidos_bool %}
+					<td class="table_unbordered ">&#9745;</td>
 					<td class="table_unbordered "></td>
+					<td class="table_unbordered "><u>{{vistoria.danos_humanos_desaparecidos}}</u></td>
+					{% else %}
 					<td class="table_unbordered "></td>
-					<td class="table_unbordered "><u></u></td>
+					<td class="table_unbordered ">&#9745;</td>
+					<td class="table_unbordered "><u>0</u></td>
+					{% endif %}
 				</tr>
 				<tr>
 					<td class="table_unbordered full">Feridos</td>
+					{% if vistoria.danos_humanos_feridos_bool %}
+					<td class="table_unbordered ">&#9745;</td>
 					<td class="table_unbordered "></td>
+					<td class="table_unbordered "><u>{{vistoria.danos_humanos_feridos}}</u></td>
+					{% else %}
 					<td class="table_unbordered "></td>
-					<td class="table_unbordered "><u></u></td>
+					<td class="table_unbordered ">&#9745;</td>
+					<td class="table_unbordered "><u>0</u></td>
+					{% endif %}
 				</tr>
 				<tr>
 					<td class="table_unbordered full">Enfermos</td>
+					{% if vistoria.danos_humanos_enfermos_bool %}
+					<td class="table_unbordered ">&#9745;</td>
 					<td class="table_unbordered "></td>
+					<td class="table_unbordered "><u>{{vistoria.danos_humanos_enfermos}}</u></td>
+					{% else %}
 					<td class="table_unbordered "></td>
-					<td class="table_unbordered "><u></u></td>
+					<td class="table_unbordered ">&#9745;</td>
+					<td class="table_unbordered "><u>0</u></td>
+					{% endif %}
 				</tr>
 				<tr>
 					<td class="table_unbordered full">Mortos</td>
+					{% if vistoria.danos_humanos_mortos_bool %}
+					<td class="table_unbordered ">&#9745;</td>
 					<td class="table_unbordered "></td>
+					<td class="table_unbordered "><u>{{vistoria.danos_humanos_mortos}}</u></td>
+					{% else %}
 					<td class="table_unbordered "></td>
-					<td class="table_unbordered "><u></u></td>
+					<td class="table_unbordered ">&#9745;</td>
+					<td class="table_unbordered "><u>0</u></td>
+					{% endif %}
 				</tr>
 				<tr>
 					<td class="table_unbordered full">Isolados</td>
+					{% if vistoria.danos_humanos_isolados_bool %}
+					<td class="table_unbordered ">&#9745;</td>
 					<td class="table_unbordered "></td>
+					<td class="table_unbordered "><u>{{vistoria.danos_humanos_isolados}}</u></td>
+					{% else %}
 					<td class="table_unbordered "></td>
-					<td class="table_unbordered "><u></u></td>
+					<td class="table_unbordered ">&#9745;</td>
+					<td class="table_unbordered "><u>0</u></td>
+					{% endif %}
 				</tr>
 				<tr>
 					<td class="table_unbordered full">Atingidos</td>
+					{% if vistoria.danos_humanos_atingidos_bool %}
+					<td class="table_unbordered ">&#9745;</td>
 					<td class="table_unbordered "></td>
+					<td class="table_unbordered "><u>{{vistoria.danos_humanos_atingidos}}</u></td>
+					{% else %}
 					<td class="table_unbordered "></td>
-					<td class="table_unbordered "><u></u></td>
+					<td class="table_unbordered ">&#9745;</td>
+					<td class="table_unbordered "><u>0</u></td>
+					{% endif %}
 				</tr>
 				<tr>
 					<td class="table_unbordered full">Afetados</td>
+					{% if vistoria.danos_humanos_afetados_bool %}
+					<td class="table_unbordered ">&#9745;</td>
 					<td class="table_unbordered "></td>
+					<td class="table_unbordered "><u>{{vistoria.danos_humanos_afetados}}</u></td>
+					{% else %}
 					<td class="table_unbordered "></td>
-					<td class="table_unbordered "><u></u></td>
+					<td class="table_unbordered ">&#9745;</td>
+					<td class="table_unbordered "><u>0</u></td>
+					{% endif %}
 				</tr>
 			</table>
 		</div>
 		<div>
 			<p><b>Observações:</b></p>
-			<p><u>AAAAAAAAAAAAAAAAAAAAAAA</u></p>
+			<p><u>{{vistoria.danos_humanos_observacoes}}</u></p>
 		</div>
 		<div>
 			<table class="table_unbordered ">
@@ -142,73 +226,127 @@
 				</tr>
 				<tr>
 					<td class="table_unbordered full">Unidades Habitacionais Atingidas</td>
+					{% if vistoria.unidades_habitacionais_atingidas_bool %}
+					<td class="table_unbordered ">&#9745;</td>
 					<td class="table_unbordered "></td>
+					<td class="table_unbordered "><u>{{vistoria.unidades_habitacionais_atingidas}}</u></td>
+					{% else %}
 					<td class="table_unbordered "></td>
-					<td class="table_unbordered "><u>aaaaaaaaaaa</u></td>
+					<td class="table_unbordered ">&#9745;</td>
+					<td class="table_unbordered "><u>0</u></td>
+					{% endif %}
 				</tr>
 				<tr> 
 					<td class="table_unbordered full">Unidades Habitacionais Danificadas</td>
+					{% if vistoria.unidades_habitacionais_danificads_bool %}
+					<td class="table_unbordered ">&#9745;</td>
 					<td class="table_unbordered "></td>
+					<td class="table_unbordered "><u>{{vistoria.unidades_habitacionais_danificads}}</u></td>
+					{% else %}
 					<td class="table_unbordered "></td>
-					<td class="table_unbordered "><u></u></td>
+					<td class="table_unbordered ">&#9745;</td>
+					<td class="table_unbordered "><u>0</u></td>
+					{% endif %}
 				</tr>
 				<tr>
 					<td class="table_unbordered full">Unidades Habitacionais Interditadas</td>
+					{% if vistoria.unidades_habitacionais_interditadas_bool %}
+					<td class="table_unbordered ">&#9745;</td>
 					<td class="table_unbordered "></td>
+					<td class="table_unbordered "><u>{{vistoria.unidades_habitacionais_interditadas}}</u></td>
+					{% else %}
 					<td class="table_unbordered "></td>
-					<td class="table_unbordered "><u></u></td>
+					<td class="table_unbordered ">&#9745;</td>
+					<td class="table_unbordered "><u>0</u></td>
+					{% endif %}
 				</tr>
 				<tr>
 					<td class="table_unbordered full">Unidades Habitacionais Destruídas</td>
+					{% if vistoria.unidades_habitacionais_destruidas_bool %}
+					<td class="table_unbordered ">&#9745;</td>
 					<td class="table_unbordered "></td>
+					<td class="table_unbordered "><u>{{vistoria.unidades_habitacionais_destruidas}}</u></td>
+					{% else %}
 					<td class="table_unbordered "></td>
-					<td class="table_unbordered "><u></u></td>
+					<td class="table_unbordered ">&#9745;</td>
+					<td class="table_unbordered "><u>0</u></td>
+					{% endif %}
 				</tr>
 				<tr>
 					<td class="table_unbordered full">Instalações Públicas de Saúde Atingidas/Danificadas/Destruídas</td>
+					{% if vistoria.instalacoes_publicas_saude_atingidas_bool %}
+					<td class="table_unbordered ">&#9745;</td>
 					<td class="table_unbordered "></td>
+					<td class="table_unbordered "><u>{{vistoria.instalacoes_publicas_saude_atingidas}}</u></td>
+					{% else %}
 					<td class="table_unbordered "></td>
-					<td class="table_unbordered "><u></u></td>
+					<td class="table_unbordered ">&#9745;</td>
+					<td class="table_unbordered "><u>0</u></td>
+					{% endif %}
 				</tr>
 				<tr>
 					<td class="table_unbordered full">Instalações Públicas de Ensino Atingidas/Danificadas/Destruídas</td>
+					{% if vistoria.instalacoes_publicas_ensino_atingidas_bool %}
+					<td class="table_unbordered ">&#9745;</td>
 					<td class="table_unbordered "></td>
+					<td class="table_unbordered "><u>{{vistoria.instalacoes_publicas_ensino_atingidas}}</u></td>
+					{% else %}
 					<td class="table_unbordered "></td>
-					<td class="table_unbordered "><u></u></td>
+					<td class="table_unbordered ">&#9745;</td>
+					<td class="table_unbordered "><u>0</u></td>
+					{% endif %}
 				</tr>
 				<tr>
 					<td class="table_unbordered full">Instalações Públicas de uso Comunitário Atingidas/Danificadas/Destruídas</td>
+					{% if vistoria.instalacoes_comunitarias_atingidas_bool %}
+					<td class="table_unbordered ">&#9745;</td>
 					<td class="table_unbordered "></td>
+					<td class="table_unbordered "><u>{{vistoria.instalacoes_comunitarias_atingidas}}</u></td>
+					{% else %}
 					<td class="table_unbordered "></td>
-					<td class="table_unbordered "><u></u></td>
+					<td class="table_unbordered ">&#9745;</td>
+					<td class="table_unbordered "><u>0</u></td>
+					{% endif %}
 				</tr>
 				<tr>
 					<td class="table_unbordered full">Obras de Infraestruturas Pública Danificada/Destruída</td>
+					{% if vistoria.obras_atingidas_bool %}
+					<td class="table_unbordered ">&#9745;</td>
 					<td class="table_unbordered "></td>
+					<td class="table_unbordered "><u>{{vistoria.obras_atingidas}}</u></td>
+					{% else %}
 					<td class="table_unbordered "></td>
-					<td class="table_unbordered "><u></u></td>
+					<td class="table_unbordered ">&#9745;</td>
+					<td class="table_unbordered "><u>0</u></td>
+					{% endif %}
 				</tr>
 				<tr>
 					<td class="table_unbordered full">Interrupção de Serviços Essenciais</td>
+					{% if vistoria.interrupcoes_servicos_essenciais_bool %}
+					<td class="table_unbordered ">&#9745;</td>
 					<td class="table_unbordered "></td>
+					<td class="table_unbordered "><u>{{vistoria.interrupcoes_servicos_essenciais}}</u></td>
+					{% else %}
 					<td class="table_unbordered "></td>
-					<td class="table_unbordered "><u></u></td>
+					<td class="table_unbordered ">&#9745;</td>
+					<td class="table_unbordered "><u>0</u></td>
+					{% endif %}
 				</tr>
 			</table>
 		</div>
-		<br><br><br>
+		<br><br><br><br><br><br><br><br>
 		<div style="margin: auto; width: 50%; padding: 10px; line-height: 50%;">
 			<b>
 				<p style="text-align: left;">ESTADO DE SANTA CATARINA</p>
 				<p style="text-align: left;">SECRETARIA DE ESTADO DA DEFESA CIVIL</p>
-				<p style="text-align: left;">COORDENADORIA REGIONAL DE DEFESA CIVIL</p>
+				<p style="text-align: left; line-height: 10px">COORDENADORIA REGIONAL DE DEFESA CIVIL</p>
 				<br />
 				<br />
 			</b>
 		</div>
 		<div>
 			<p><b>Observações:</b></p>
-			<p><u>AAAAAAAAAAA</u></p>
+			<p><u>{{vistoria.danos_materiais_observacoes}}</u></p>
 		</div>
 		<div>
 			<table class="table_unbordered">
@@ -216,31 +354,49 @@
 					<th class="table_unbordered full">DANOS AMBIENTAIS</th>
 					<th class="table_unbordered ">SIM</th>
 					<th class="table_unbordered ">NÃO</th>
-					<th class="table_unbordered full">Nº DE PESSOAS AFETADAS</th>
+					<th class="table_unbordered full" style="line-height: 12px;">Nº DE PESSOAS AFETADAS</th>
 				</tr>
 				<tr>
 					<td class="table_unbordered full">Contaminação de água</td>
+					{% if vistoria.contaminacao_agua_bool %}
+					<td class="table_unbordered ">&#9745;</td>
 					<td class="table_unbordered "></td>
+					<td class="table_unbordered "><u>{{vistoria.contaminacao_agua}}</u></td>
+					{% else %}
 					<td class="table_unbordered "></td>
-					<td class="table_unbordered "><u>aaaaaaaaaaa</u></td>
+					<td class="table_unbordered ">&#9745;</td>
+					<td class="table_unbordered "><u>0</u></td>
+					{% endif %}
 				</tr>
 				<tr>
 					<td class="table_unbordered full">Contaminação de solo</td>
+					{% if vistoria.contaminacao_solo_bool %}
+					<td class="table_unbordered ">&#9745;</td>
 					<td class="table_unbordered "></td>
+					<td class="table_unbordered "><u>{{vistoria.contaminacao_solo}}</u></td>
+					{% else %}
 					<td class="table_unbordered "></td>
-					<td class="table_unbordered "><u>aaaaaaaaaaa</u></td>
+					<td class="table_unbordered ">&#9745;</td>
+					<td class="table_unbordered "><u>0</u></td>
+					{% endif %}
 				</tr>
 				<tr>
 					<td class="table_unbordered full">Contaminação do ar</td>
+					{% if vistoria.contaminacao_ar_bool %}
+					<td class="table_unbordered ">&#9745;</td>
 					<td class="table_unbordered "></td>
+					<td class="table_unbordered "><u>{{vistoria.contaminacao_ar}}</u></td>
+					{% else %}
 					<td class="table_unbordered "></td>
-					<td class="table_unbordered "><u></u></td>
+					<td class="table_unbordered ">&#9745;</td>
+					<td class="table_unbordered "><u>0</u></td>
+					{% endif %}
 				</tr>
 			</table>
 		</div>
 		<div>
 			<p><b>Observações:</b></p>
-			<p><u>AAAAAAAAAAA</u></p>
+			<p><u>{{vistoria.danos_ambientais_observacoes}}</u></p>
 		</div>
 		<div>
 			<table class="table_unbordered">
@@ -251,34 +407,59 @@
 				</tr>
 				<tr>
 					<td class="table_unbordered full">Danos e Prejuízos na Agricultura</td>
+					{% if vistoria.danos_agricultura_bool %}
+					<td class="table_unbordered ">&#9745;</td>
 					<td class="table_unbordered "></td>
+					{% else %}
 					<td class="table_unbordered "></td>
+					<td class="table_unbordered ">&#9745;</td>
+					{% endif %}
 				</tr>
 				<tr>
 					<td class="table_unbordered full">Danos e Prejuízos na Pecuária</td>
+					{% if vistoria.danos_pecuaria_bool %}
+					<td class="table_unbordered ">&#9745;</td>
 					<td class="table_unbordered "></td>
+					{% else %}
 					<td class="table_unbordered "></td>
+					<td class="table_unbordered ">&#9745;</td>
+					{% endif %}
 				</tr>
 				<tr>
 					<td class="table_unbordered full">Danos e Prejuízos na Indústria</td>
+					{% if vistoria.danos_industria_bool %}
+					<td class="table_unbordered ">&#9745;</td>
 					<td class="table_unbordered "></td>
+					{% else %}
 					<td class="table_unbordered "></td>
+					<td class="table_unbordered ">&#9745;</td>
+					{% endif %}
 				</tr>
 				<tr>
 					<td class="table_unbordered full">Danos e Prejuízos no Comércio</td>
+					{% if vistoria.danos_comercio_bool %}
+					<td class="table_unbordered ">&#9745;</td>
 					<td class="table_unbordered "></td>
+					{% else %}
 					<td class="table_unbordered "></td>
+					<td class="table_unbordered ">&#9745;</td>
+					{% endif %}
 				</tr>
 				<tr>
 					<td class="table_unbordered full">Danos e Prejuízos na Prestação de Serviços</td>
+					{% if vistoria.danos_prestacao_de_servicos_bool %}
+					<td class="table_unbordered ">&#9745;</td>
 					<td class="table_unbordered "></td>
+					{% else %}
 					<td class="table_unbordered "></td>
+					<td class="table_unbordered ">&#9745;</td>
+					{% endif %}
 				</tr>
 			</table>
 		</div>
 		<div>
 			<p><b>Observações:</b></p>
-			<p><u>AAAAAAAAAAA</u></p>
+			<p><u>{{vistoria.danos_economicos_observacoes}}</u></p>
 		</div>
 		<div>
 			<p><b>Ações de Socorro, Assistência e Reabilitação realizadas pelo município</b></p>
@@ -290,8 +471,13 @@
 				</tr>
 				<tr>
 					<td class="table_unbordered full2">Fornecimento de Itens de Ajuda Humanitária pelo poder público municipal</td>
+					{% if vistoria.vistoriaSimples.iah_bool %}
+					<td class="table_unbordered ">&#9745;</td>
 					<td class="table_unbordered "></td>
+					{% else %}
 					<td class="table_unbordered "></td>
+					<td class="table_unbordered ">&#9745;</td>
+					{% endif %}
 				</tr>
 			</table>
 			<table class="table_unbordered">
@@ -302,43 +488,83 @@
 				</tr>
 				<tr>
 					<td class="table_unbordered full2">Cestas de Alimentos</td>
-					<td class="table_unbordered "></td>
-					<td class="table_unbordered "></td>
+					{% if vistoria.iah_cestas_de_alimentos_bool %}
+					<td class="table_unbordered ">&#9745;</td>
+					<td class="table_unbordered "><u>{{vistoria.iah_cestas_de_alimentos}}</u></td>
+					{% else %}
+					<td class="table_unbordered ">&#9746;</td>
+					<td class="table_unbordered "><u>0</u></td>
+					{% endif %}
 				</tr>
 				<tr>
 					<td class="table_unbordered full2">Água Potável</td>
-					<td class="table_unbordered "></td>
-					<td class="table_unbordered "></td>
+					{% if vistoria.iah_agua_potavel_bool %}
+					<td class="table_unbordered ">&#9745;</td>
+					<td class="table_unbordered "><u>{{vistoria.iah_agua_potavel}}</u></td>
+					{% else %}
+					<td class="table_unbordered ">&#9746;</td>
+					<td class="table_unbordered "><u>0</u></td>
+					{% endif %}
 				</tr>
 				<tr>
 					<td class="table_unbordered full2">Colchões</td>
-					<td class="table_unbordered "></td>
-					<td class="table_unbordered "></td>
+					{% if vistoria.iah_colchoes_bool %}
+					<td class="table_unbordered ">&#9745;</td>
+					<td class="table_unbordered "><u>{{vistoria.iah_colchoes}}</u></td>
+					{% else %}
+					<td class="table_unbordered ">&#9746;</td>
+					<td class="table_unbordered "><u>0</u></td>
+					{% endif %}
 				</tr>
 				<tr>
 					<td class="table_unbordered full2">Kit de Higiene Pessoal</td>
-					<td class="table_unbordered "></td>
-					<td class="table_unbordered "></td>
+					{% if vistoria.iah_kit_higiene_pessoal_bool %}
+					<td class="table_unbordered ">&#9745;</td>
+					<td class="table_unbordered "><u>{{vistoria.iah_kit_higiene_pessoal}}</u></td>
+					{% else %}
+					<td class="table_unbordered ">&#9746;</td>
+					<td class="table_unbordered "><u>0</u></td>
+					{% endif %}
 				</tr>
 				<tr>
 					<td class="table_unbordered full2">Kit de Limpeza</td>
-					<td class="table_unbordered "></td>
-					<td class="table_unbordered "></td>
+					{% if vistoria.iah_kit_limpeza_bool %}
+					<td class="table_unbordered ">&#9745;</td>
+					<td class="table_unbordered "><u>{{vistoria.iah_kit_limpeza}}</u></td>
+					{% else %}
+					<td class="table_unbordered ">&#9746;</td>
+					<td class="table_unbordered "><u>0</u></td>
+					{% endif %}
 				</tr>
 				<tr>
 					<td class="table_unbordered full2">Telhas</td>
-					<td class="table_unbordered "></td>
-					<td class="table_unbordered "></td>
+					{% if vistoria.iah_telhas_bool %}
+					<td class="table_unbordered ">&#9745;</td>
+					<td class="table_unbordered "><u>{{vistoria.iah_telhas}}</u></td>
+					{% else %}
+					<td class="table_unbordered ">&#9746;</td>
+					<td class="table_unbordered "><u>0</u></td>
+					{% endif %}
 				</tr>
 				<tr>
 					<td class="table_unbordered full2">Lona Plástica (emergencial)</td>
-					<td class="table_unbordered "></td>
-					<td class="table_unbordered "></td>
+					{% if vistoria.iah_lona_plastica_bool %}
+					<td class="table_unbordered ">&#9745;</td>
+					<td class="table_unbordered "><u>{{vistoria.iah_lona_plastica}}</u></td>
+					{% else %}
+					<td class="table_unbordered ">&#9746;</td>
+					<td class="table_unbordered "><u>0</u></td>
+					{% endif %}
 				</tr>
 				<tr>
 					<td class="table_unbordered full2">Outros</td>
-					<td class="table_unbordered "></td>
-					<td class="table_unbordered "></td>
+					{% if vistoria.iah_outros_bool %}
+					<td class="table_unbordered ">&#9745;</td>
+					<td class="table_unbordered "><u>{{vistoria.iah_outros}}</u></td>
+					{% else %}
+					<td class="table_unbordered ">&#9746;</td>
+					<td class="table_unbordered "><u>0</u></td>
+					{% endif %}
 				</tr>
 			</table>
 			<table class="table_unbordered">
@@ -349,17 +575,27 @@
 				</tr>
 				<tr>
 					<td class="table_unbordered full2">Vias públicas totalmente desobstruídas</td>
-					<td class="table_unbordered "></td>
-					<td class="table_unbordered "></td>
+					{% if vistoria.iah_vias_publicas_totalmente_desobistruidas %}
+					<td class="table_unbordered ">&#9744;</td>
+					<td class="table_unbordered ">&#9745;</td>
+					{% else %}
+					<td class="table_unbordered ">&#9744;</td>
+					<td class="table_unbordered ">&#9745;</td>
+					{% endif %}
 				</tr>
 				<tr>
 					<td class="table_unbordered full2">Restabelecimento de Serviços Essenciais</td>
-					<td class="table_unbordered "></td>
-					<td class="table_unbordered "></td>
+					{% if vistoria.iah_reestabelecimento_servicos_essenciais %}
+					<td class="table_unbordered ">&#9744;</td>
+					<td class="table_unbordered ">&#9745;</td>
+					{% else %}
+					<td class="table_unbordered ">&#9744;</td>
+					<td class="table_unbordered ">&#9745;</td>
+					{% endif %}
 				</tr>
 			</table>
 		</div>
-		<br><br><br><br><br><br><br><br>
+		<br><br><br><br><br><br><br><br><br>
 		<div style="margin: auto; width: 50%; padding: 10px; line-height: 50%;">
 			<b>
 				<p style="text-align: left;">ESTADO DE SANTA CATARINA</p>
@@ -377,36 +613,56 @@
 					<th class="table_unbordered left">Recomendação à homologação</th>
 				</tr>
 				<tr>
-					<td class="table_unbordered left">Não atende aos critérios de classificação</td>
+					<td class="table_unbordered left">&#9744;  Não atende aos critérios de classificação</td>
 					<td class="table_unbordered left"></td>
 				</tr>
 				<tr>
-					<td class="table_unbordered left">Desastre de Nível I - Situação de Emergência</td>
-					<td class="table_unbordered left">Deferimento</td>
+					<td class="table_unbordered left">&#9744;  Desastre de Nível I - Situação de Emergência</td>
+					{% if vistoria.iah_reestabelecimento_servicos_essenciais %}
+					<td class="table_unbordered left">&#9745;  Deferimento</td>
+					{% else %}
+					<td class="table_unbordered left">&#9744;  Deferimento</td>
+					{% endif %}
 				</tr>
 				<tr>
-					<td class="table_unbordered left">Desastre de Nível II - Situação de Emergência</td>
+					<td class="table_unbordered left">&#9744;  Desastre de Nível II - Situação de Emergência</td>
 					<td class="table_unbordered left"></td>
 				</tr>
 				<tr>
-					<td class="table_unbordered left">Desastre de Nível III - Estado de Calamidade Pública</td>
-					<td class="table_unbordered left">Indeferimento</td>
+					<td class="table_unbordered left">&#9744;  Desastre de Nível III - Estado de Calamidade Pública</td>
+					{% if vistoria.iah_reestabelecimento_servicos_essenciais %}
+					<td class="table_unbordered left">&#9744;  Indeferimento</td>
+					{% else %}
+					<td class="table_unbordered left">&#9745;  Indeferimento</td>
+					{% endif %}
 				</tr>
 			</table>
 		</div>
 		<div>
 			<p><b>Informações gerais</b></p>
 			<table class="tablefull">
-				<td class="um">                 </td>
+				<td class="um">                 
+
+
+
+
+
+
+
+
+
+
+				</td>
 			</table>
 			<br><br>
 			__________________________________________,_____________________.
 			<br><br><br><br><br><br><br><br><br><br><br><br>
 		</div>
 		<div style="text-align: center; text-decoration: overline; margin: auto; width: 50%; padding: 10px;">Coordenador Regional de Defesa Civil</div>
-		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 		<div style="text-align: center; border-top: solid 1px; margin: auto; width: 50%; padding: 10px;">SECRETARIA DE ESTADO DA DEFESA CIVIL<br>Rua Ivo Silveira, 2320 - Capoeiras | CEP 88.085-001 | Florianópolis — SC <br>www.defesacivil.sc.gov.br</div>
+	</div>
 	</body>
 
 </html>

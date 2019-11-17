@@ -9,8 +9,8 @@ from django.utils import timezone
 
 class CustomUser(AbstractUser):
 	username = models.CharField(_('username'),max_length=15, unique=True, help_text=_('15 caracteres ou menos. Aceita letras, números e @/./+/-/_'), validators=[ validators.RegexValidator(re.compile('^[\w.@+-]+$'), _('Insira um usuário válido.'), _('inválido'))])
-	first_name = models.CharField(_('first name'), max_length=30, blank=False, null=False)
-	last_name = models.CharField(_('last name'), max_length=30, blank=False, null=False)
+	first_name = models.CharField(_('first_name'), max_length=30, blank=False, null=False)
+	last_name = models.CharField(_('last_name'), max_length=30, blank=False, null=False)
 	email = models.EmailField(_('email address'), max_length=255, unique=True, blank=False, null=False)
 	is_staff = models.BooleanField(_('staff status'), default=False, blank = True)
 	is_active = models.BooleanField(_('active'), default=True, blank = True)
