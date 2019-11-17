@@ -26,7 +26,7 @@
                     {% for vistoria in vistorias %}
                         <tr onclick="window.location='{% url 'vistoriadetalhes' pk=vistoria.pk %}';">
                             <td class="mdl-color-text--deep-orange">{{ vistoria.autor.first_name }} {{ vistoria.autor.last_name }}</td>
-                            <td class="mdl-color-text--deep-orange">{{ vistoria.municipio }}</td>
+                            <td class="mdl-color-text--deep-orange">{{ vistoria.municipios }}</td>
                             <td class="mdl-color-text--deep-orange">{{ vistoria.endereco }}</td>
                             <td class="mdl-color-text--deep-orange">{{ vistoria.cobrad }}</td>
                             <td class="mdl-color-text--deep-orange">{{ vistoria.data }}</td>
