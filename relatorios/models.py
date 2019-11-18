@@ -15,6 +15,7 @@ class Vistoria(models.Model):
     data = models.DateTimeField(default=timezone.now)
     endereco = models.TextField()
     dataDesastre = models.TextField()
+    descricaoDesastre = models.CharField(max_length=500)
     #latitude e longitude com FloatField ou DecimalField?
     #Danos humanos:
 

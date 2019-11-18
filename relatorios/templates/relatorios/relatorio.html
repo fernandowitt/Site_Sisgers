@@ -10,13 +10,14 @@
 		body { font-size: 12px; font-family: Arial; margin: 10px; line-height : 12px}
 		table.tablefull { border-collapse: collapse; table-layout: fixed; width: 100%; white-space: pre-wrap !important; }
 		.table_unbordered { border: none !important; padding: 2px 4px 2px 4px; text-align: center; }
-		.full { width: 90%; text-align: left; }
-		.full2 { width: 90%; text-align: left; }
+		.full { width: 700px; text-align: left; }
+		.full2 { width: 600px; text-align: left; }
+		.full3 {width: 12000px; text-align: left;}
 		.left { text-align: left; }
 		/*. { width: 5%; }*/
-		/*th.um, td.um { width: 100%; }
-		th.tres, td.tres { width: 33%; }
-		th.quatro, td.quatro { width: 25%; }*/
+		/*th.um, td.um { width: 100px; }
+		th.tres, td.tres { width: 33px; }
+		th.quatro, td.quatro { width: 25px; }*/
 	</style>
 
 	<script type="text/javascript">
@@ -81,7 +82,7 @@ $(document).ready( function() {
 				</tr>
 				<tr>
 					<td>{{ vistoria.cobrad }}</td>
-					<td>{{ vistoria.descricao }}</td>
+					<td>{{ vistoria.descDesastre }}</td>
 					<td>{{ vistoria.data }}</td>
 					<td>{{ vistoria.hora }}</td>
 				</tr>
@@ -333,8 +334,12 @@ $(document).ready( function() {
 					{% endif %}
 				</tr>
 			</table>
+		<div>
+			<p><b>Observções:</b></p>
+			<p><u>{{vistoria.danos_materiais_observacoes}}</u></p>
 		</div>
-		<br><br><br><br><br><br><br><br>
+		</div>
+		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 		<div style="margin: auto; width: 50%; padding: 10px; line-height: 50%;">
 			<b>
 				<p style="text-align: left;">ESTADO DE SANTA CATARINA</p>
@@ -344,10 +349,7 @@ $(document).ready( function() {
 				<br />
 			</b>
 		</div>
-		<div>
-			<p><b>Observações:</b></p>
-			<p><u>{{vistoria.danos_materiais_observacoes}}</u></p>
-		</div>
+	
 		<div>
 			<table class="table_unbordered">
 				<tr>
@@ -357,9 +359,9 @@ $(document).ready( function() {
 					<th class="table_unbordered full" style="line-height: 12px;">Nº DE PESSOAS AFETADAS</th>
 				</tr>
 				<tr>
-					<td class="table_unbordered full">Contaminação de água</td>
+					<td class="table_unbordered full3">Contaminação de água</td>
 					{% if vistoria.contaminacao_agua_bool %}
-					<td class="table_unbordered ">&#9745;</td>
+					<td class="table_unbordered  ">&#9745;</td>
 					<td class="table_unbordered "></td>
 					<td class="table_unbordered "><u>{{vistoria.contaminacao_agua}}</u></td>
 					{% else %}
@@ -369,7 +371,7 @@ $(document).ready( function() {
 					{% endif %}
 				</tr>
 				<tr>
-					<td class="table_unbordered full">Contaminação de solo</td>
+					<td class="table_unbordered full3">Contaminação de solo</td>
 					{% if vistoria.contaminacao_solo_bool %}
 					<td class="table_unbordered ">&#9745;</td>
 					<td class="table_unbordered "></td>
@@ -381,7 +383,7 @@ $(document).ready( function() {
 					{% endif %}
 				</tr>
 				<tr>
-					<td class="table_unbordered full">Contaminação do ar</td>
+					<td class="table_unbordered full3">Contaminação do ar</td>
 					{% if vistoria.contaminacao_ar_bool %}
 					<td class="table_unbordered ">&#9745;</td>
 					<td class="table_unbordered "></td>
@@ -595,7 +597,7 @@ $(document).ready( function() {
 				</tr>
 			</table>
 		</div>
-		<br><br><br><br><br><br><br><br><br>
+		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 		<div style="margin: auto; width: 50%; padding: 10px; line-height: 50%;">
 			<b>
 				<p style="text-align: left;">ESTADO DE SANTA CATARINA</p>

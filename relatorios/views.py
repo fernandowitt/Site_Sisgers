@@ -17,6 +17,7 @@ class simpleVistoria:
 		self.cobrad = 0
 		self.municipios = "Nao informado"
 		self.descricao = "Nao informado"
+		self.descDesastre = "Nao informado"
 		self.data = "Nao informado"
 		self.hora = "Nao informado"
 		self.endereco = "Nao informado"
@@ -114,7 +115,7 @@ class simpleVistoria:
 		self.deferido = False
 
 
-
+@login_required
 def vistoria_pdf(request, pk):
 	vistoria = Vistoria.objects.get(pk = pk)
 	vistoriaSimples = simpleVistoria(vistoria.autor)
@@ -124,6 +125,7 @@ def vistoria_pdf(request, pk):
 	dataHora = vistoria.dataDesastre.split(';')
 	vistoriaSimples.data = dataHora[0]
 	vistoriaSimples.hora = dataHora[1]
+	vistoriaSimples.descDesastre = vistoria.descricaoDesastre
 	vistoriaSimples.endereco = vistoria.endereco
 	vistoriaSimples.dataDesastre = vistoria.dataDesastre
 
