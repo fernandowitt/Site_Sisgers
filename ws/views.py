@@ -11,7 +11,7 @@ from rest_framework import permissions
 from rest_framework.decorators import api_view, permission_classes
 import json
 from django.core import serializers
-from django.contrib.auth.models import User
+from accounts.models import CustomUser
 import reportlab
 from reportlab.pdfgen import canvas
 from django.http import HttpResponse
@@ -127,7 +127,7 @@ def cadastrovistoria(request):
 
 	if request.method == 'POST':
 		data = json.loads(request.body.decode('UTF-8'))
-		user = User.objects.get(id = data.get('autor'))
+		user = CustomUser.objects.get(id = data.get('autor'))
 		serializer = VistoriaSerializer(data=data)
 		if serializer.is_valid():
 			print(serializer)
