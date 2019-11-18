@@ -294,7 +294,10 @@ def vistoria_pdf(request, pk):
 
 	vistoriaSimples.iah_fornecidos_outros_observacoes = vistoria.iah_fornecidos_outros_observacoes
 	vistoriaSimples.iah_vias_publicas_totalmente_desobistruidas = vistoria.iah_vias_publicas_totalmente_desobistruidas
-	vistoriaSimples.iah_reestabelecimento_servicos_essenciais = vistoria.iah_reestabelecimento_servicos_essenciais
+	if(vistoria.iah_vias_publicas_totalmente_desobistruidas):
+		vistoriaSimples.iah_vias_publicas_totalmente_desobistruidas = True
+	if(vistoria.iah_reestabelecimento_servicos_essenciais):
+		vistoriaSimples.iah_reestabelecimento_servicos_essenciais = True
 
 	vistoriaSimples.deferido = vistoria.deferido
 
