@@ -316,6 +316,9 @@ def minhasvistorias(request):
 	vistorias = Vistoria.objects.filter(autor=request.user, data__lte=timezone.now()).order_by('-data')
 	return render(request, 'relatorios/minhas_vistorias.html', {'vistorias':vistorias})
 
+def ajuda(request):
+	return render(request, '../templates/ajuda/Ajuda.html', {})
+
 @login_required
 def vistoriadetalhes(request, pk):
 	vistoria = get_object_or_404(Vistoria, pk=pk)
