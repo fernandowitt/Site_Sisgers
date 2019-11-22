@@ -1,47 +1,71 @@
+
+
 {% extends 'base.html' %}
 {% load static from staticfiles %}
 
+<
 
-<style type="text/css">
-	
-	div {
-
-		padding: 10px;
-
-	}
-
-</style>
 
 {% block conteudo %}
 
- <div style="margin-left: 2% !important; margin-top: 2% !important; display: block !important;">
+ <div>
  	<div>
   <h5>Cadastrar uma vistoria</h5>
-  <div>
- 	 <p>Para realizar o cadastro de uma vistoria, é necessário primeiro fazer o login, com seu usuário e senha previamente criados no site.<img  src="{% static 'image/login.jpg' %}" alt="login Screen" style="float:left; padding-right: 5px; width: 300px; height: 500px;" align = "left"></p>
-  </div>
-  <div>
- 	 <p>Após realizar o login, caso seja necessário o aplicativo irá solicitar permissãoes para acessar sua localização ter acesso a memório. É importante para o correto funcionamento do aplicativo que você conceda essas permissões<img  src="{% static 'image/login.jpg' %}" alt="login Screen" style="float: left; padding-right: 5px; width: 300px; height: 500px;" align = "left"></p>
-  </div>
-  <div>
- 	 <p>Preencha os campos iniciais com as informações básicas sobre a vistoria<img  src="{% static 'image/identificacao_vazio.jpg' %}" alt="login Screen" style="float: left; padding-right: 5px; width: 300px; height: 500px;" align = "left"> <img  src="{% static 'image/identificacao.jpg' %}" alt="login Screen" style="float: left; padding-right: 5px; width: 300px; height: 500px;" align = "left"></p>
+  <div class="divAjuda">
+    <center>
+       <img  src="{% static 'image/login.jpg' %}" alt="login Screen" class="imgAjuda">
+       <p>Para realizar o cadastro de uma vistoria, é necessário primeiro fazer o login, com seu usuário e senha previamente criados no site.</p>
+
+    </center>
+   
+ 	
   </div>
 
-  <div>
- 	 <p>Informe também a(s) cidade(s) e o(s) COBRADE(s) referente(s) a vistoria realizada<img  src="{% static 'image/cidades.jpg' %}" alt="login Screen" style="float: left; padding-right: 5px; width: 300px; height: 500px;" align = "left"> <img  src="{% static 'image/cobrades.jpg' %}" alt="login Screen" style="float: left; padding-right: 5px; width: 300px; height: 500px;" align = "left"></p>
+  <div class="divAjuda">
+     <center>
+    <img  src="{% static 'image/login.jpg' %}" alt="login Screen" class="imgAjuda">
+   <p>Após realizar o login, caso seja necessário o aplicativo irá solicitar permissãoes para acessar sua localização ter acesso a memório. É importante para o correto funcionamento do aplicativo que você conceda essas permissões</p>
+    <center>
   </div>
-  <div>
+
+  <div class="divAjuda">
+      <center>
+        <img  src="{% static 'image/identificacao_vazio.jpg' %}" alt="login Screen" class="imgAjuda"> <img  src="{% static 'image/identificacao.jpg' %}" alt="login Screen" class="imgAjuda">
+ 	 <p>Preencha os campos iniciais com as informações básicas sobre a vistoria</p>
+     </center>
+  </div>
+
+  <div class="divAjuda">
+    <center>
+    <img  src="{% static 'image/cidades.jpg' %}" alt="login Screen" class="imgAjuda"> <img  src="{% static 'image/cobrades.jpg' %}" alt="login Screen" class="imgAjuda">
+ 	 <p>Informe também a(s) cidade(s) e o COBRADE referente a vistoria realizada</p>
+   </center>
+  </div>
+
+  <div class="divAjuda">
+     <center>
  	 <p>Preencha os campos referentes a vistoria que você está realizando. Os campos estão separados por abas (Identificação do desastre, Danos Humanos, Danos Materiais, Danos Ambientais, Danos Econômicos e IAH Fornecidos).</p>
+    </center>
   </div>
-  <div>
- 	 <p>Para poder digitar a quantidade referente a opção você deve marcar a caixa ao lado esquerdo da opção desejada. Não é necessário informar todas as opção, caso não hajam desabrigados por exemplo, basta não marcar a opção desabrigados e ela será considera como 0 no sistema<img  src="{% static 'image/Humanos.jpg' %}" alt="login Screen" style="float: left; padding-right: 5px; width: 300px; height: 500px;" align = "left"></p>
+  <div class="divAjuda">
+    <center>
+      <img  src="{% static 'image/humanos.jpg' %}" alt="login Screen" class="imgAjuda">
+ 	 <p>Para poder digitar a quantidade referente a opção você deve marcar a caixa ao lado esquerdo da opção desejada. Não é necessário informar todas as opção, caso não hajam desabrigados por exemplo, basta não marcar a opção desabrigados e ela será considera como 0 no sistema</p>
+   </center>
   </div>
 
-   <div>
- 	 <p>Para poder digitar a quantidade referente a opção você deve marcar a caixa ao lado esquerdo da opção desejada. Não é necessário informar todas as opção, caso não hajam desabrigados por exemplo, basta não marcar a opção desabrigados e ela será considera como 0 no sistema<img  src="{% static 'image/Humanos.jpg' %}" alt="login Screen" style="float: left; padding-right: 5px; width: 300px; height: 500px;" align = "left"></p>
+   <div class="divAjuda">
+    <center>
+      <img  src="{% static 'image/humanos_observacoes.jpg' %}" alt="login Screen" class="imgAjuda">
+   <p>Tambem e possivel, mas nao obrigatorio, fazer observacoes em cada aba referente a vistoria</p>
+   </center>
   </div>
-  <div>
- 	 <p>Após informar todos os dados desejados você pode vizualizar um resumo da vistoria antes de envia-la.<img  src="{% static 'image/resumo.jpg' %}" alt="login Screen" style="float: left; padding-right: 5px; width: 300px; height: 500px;" align = "left"></p>
+
+  <div class="divAjuda">
+    <center>
+    <img  src="{% static 'image/resumo.jpg' %}" alt="login Screen" class="imgAjuda">
+ 	 <p>Após informar todos os dados desejados você pode vizualizar um resumo da vistoria antes de envia-la.</p>
+   </center>
   </div>
 
 
