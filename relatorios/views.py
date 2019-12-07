@@ -114,6 +114,20 @@ class simpleVistoria:
 
 		self.deferido = False
 
+@login_required
+def deferir(request, pk):
+	print('ola')
+	vistoria = Vistoria.objects.get(pk=pk)
+	vistoria.deferido  = True
+	vistoria.save()
+	return vistoriadetalhes(request, pk)
+
+@login_required
+def indeferir(request, pk):
+        vistoria = Vistoria.objects.get(pk=pk)
+        vistoria.deferido  = False
+        vistoria.save()
+        return vistoriadetalhes(request, pk)	
 
 @login_required
 def vistoria_pdf(request, pk):

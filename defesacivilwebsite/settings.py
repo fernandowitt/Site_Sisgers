@@ -98,6 +98,15 @@ DATABASES = {
     }
 }
 
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.mysql',
+#        'NAME': 'sisgerds$sisgerds',
+#        'USER': 'sisgerds',
+#        'PASSWORD': 'ifscCanoiNhasSantaCatariNa',
+#        'HOST': 'sisgerds.mysql.pythonanywhere-services.com',
+#    }
+#}
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators

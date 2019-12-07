@@ -236,11 +236,11 @@
 
 	{% if user.is_superuser %}
 		{% if vistoria.deferido %}
-			<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored mdl-color--red-400" style="margin-left: 15px !important; margin-bottom: 30px !important;">
+			<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored mdl-color--red-400" style="margin-left: 15px !important; margin-bottom: 30px !important;" onclick="window.location.href = '{% url 'deferir' pk=vistoria.pk %}';">
 				Indeferir <i class=" material-icons" role="presentation">close</i>
 			</button>
 		{% else %}
-			<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored mdl-color--green-400" style="margin-left: 15px !important; margin-bottom: 30px !important;">
+			<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored mdl-color--green-400" style="margin-left: 15px !important; margin-bottom: 30px !important;" onclick="window.location.href = '{% url 'indeferir' pk=vistoria.pk %}';">
 				Deferir <i class=" material-icons" role="presentation">check</i>
 			</button>
 		{% endif %}
