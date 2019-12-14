@@ -327,7 +327,10 @@ def todasvistorias(request):
 
 @login_required
 def minhasvistorias(request):
-	vistorias = Vistoria.objects.filter(autor=request.user, data__lte=timezone.now()).order_by('-data')
+	if request.user.is_superuser:
+		 vistorias = Vistoria.objects.filter(data__lte=timezone.now()).order_by('-data')
+	else:
+		vistorias = Vistoria.objects.filter(autor=request.user, data__lte=timezone.now()).order_by('-data')
 	return render(request, 'relatorios/minhas_vistorias.html', {'vistorias':vistorias})
 
 def ajuda(request):
