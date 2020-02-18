@@ -22,6 +22,7 @@ class simpleVistoria:
 		self.hora = "Nao informado"
 		self.endereco = "Nao informado"
 		self.dataDesastre = "Nao informado"
+		self.foto = "vazio"
 
 		self.danos_humanos_desalojados = 0
 		self.danos_humanos_desabrigados = 0
